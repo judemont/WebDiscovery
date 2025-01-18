@@ -26,7 +26,10 @@ def crawl(url: str, from_site_id: int|None,):
         return
     
     if len(sites) == 0:
-        IP = socket.gethostbyname(domain)
+        try:
+            IP = socket.gethostbyname(domain)
+        except:
+            IP = -1
         db.new_site(domain=domain, IP=IP)
         sites = db.get_sites(domain=domain)
 
@@ -35,7 +38,7 @@ def crawl(url: str, from_site_id: int|None,):
     
     db.new_page(site_id, normalized_url)
 
-    if from_site_id != None and site_id != from_site_id:
+    if from_site_id != None and site_id != from_site_id:    
         link = db.get_links(from_site_id=from_site_id, to_link_id=site_id)
         if len(link) == 0:
             db.new_link(from_site_id, site_id)
@@ -53,8 +56,5 @@ def crawl(url: str, from_site_id: int|None,):
 
 
 
-pages = db.get_pages()
-if False : #len(pages) > 0
-    crawl(pages[len(pages)-1], None)
-else:
-    crawl("https://www.google.com", None)
+
+crawl("https://www.example.com", None)
