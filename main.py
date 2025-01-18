@@ -65,4 +65,4 @@ def crawl(url: str, from_site_id: int|None,):
 
 
 
-crawl("https://github.com/judemont", None)
+crawl("https://mozilla.org", None)

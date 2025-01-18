@@ -5,7 +5,7 @@ class Database:
     def __init__(self, db):
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS sites (id INTEGER PRIMARY KEY, domain TEXT, TEXT, IP TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS sites (id INTEGER PRIMARY KEY, domain TEXT, IP TEXT)")
         self.cur.execute("CREATE TABLE IF NOT EXISTS pages (id INTEGER PRIMARY KEY, domain_id INTEGER, url TEXT)")
         self.cur.execute("CREATE TABLE IF NOT EXISTS links (id INTEGER PRIMARY KEY, from_site_id INTEGER, to_link_id INTEGER)")
 
