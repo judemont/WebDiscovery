@@ -23,13 +23,15 @@ def crawl(url: str, from_site_id: int|None,):
     pages = db.get_pages(url=normalized_url)
     sites = db.get_sites(domain=domain)
 
+    if len(pages) > 0:
+        return
+    
+    
     if random.randint(0, 43) == 42:
         pages = db.get_pages()
         sites = db.get_sites()
         print(f"Pages: {len(pages)}, Sites: {len(sites)}")
 
-    if len(pages) > 0:
-        return
     
     if len(sites) == 0:
         try:
@@ -63,4 +65,4 @@ def crawl(url: str, from_site_id: int|None,):
 
 
 
-crawl("https://www.example.com", None)
+crawl("https://github.com/judemont", None)
