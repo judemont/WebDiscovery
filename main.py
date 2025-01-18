@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 from database import Database
 import socket
 from utils import Utils
+import random
 
 db = Database("data.db")
 
@@ -21,6 +22,11 @@ def crawl(url: str, from_site_id: int|None,):
     normalized_url = Utils.normalize_url(url)
     pages = db.get_pages(url=normalized_url)
     sites = db.get_sites(domain=domain)
+
+    if random.randint(0, 43) == 42:
+        pages = db.get_pages()
+        sites = db.get_sites()
+        print(f"Pages: {len(pages)}, Sites: {len(sites)}")
 
     if len(pages) > 0:
         return
