@@ -3,7 +3,7 @@ import sqlite3
 
 class Database:
     def __init__(self, db):
-        self.conn = sqlite3.connect(db)
+        self.conn = sqlite3.connect(db, check_same_thread=False)
         self.cur = self.conn.cursor()
         self.cur.execute("CREATE TABLE IF NOT EXISTS sites (id INTEGER PRIMARY KEY, domain TEXT, IP TEXT)")
         self.cur.execute("CREATE TABLE IF NOT EXISTS pages (id INTEGER PRIMARY KEY, domain_id INTEGER, url TEXT)")

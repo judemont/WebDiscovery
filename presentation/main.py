@@ -48,7 +48,7 @@ fig, ax = plt.subplots()
 ig.plot(
     g, 
     target=ax,
-    layout="graphopt",
+    layout="rt_circular",
     edge_width=0.4,
     vertex_size=g.vs["size"],
     vertex_label=g.vs['label'],
