@@ -9,21 +9,23 @@ import random
 db = Database("data.db")
 
 
-def crawl(url: str, from_site_id: int|None,):
+def crawl(url: str, from_site_id: int|None, duplicate = False):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+    }
     try:
-        response = requests.get(url)
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
     except:
         return
     
     soup = BeautifulSoup(response.text, "html.parser")
 
-    parsed_url = urlparse(url)
     domain = Utils.normalize_domain(url)
     normalized_url = Utils.normalize_url(url)
     pages = db.get_pages(url=normalized_url)
     sites = db.get_sites(domain=domain)
-
-    if len(pages) > 0:
+    if len(pages) > 0 and not duplicate:
         return
     
     
@@ -58,11 +60,10 @@ def crawl(url: str, from_site_id: int|None,):
         a_url = a.get("href")
         normalized_url = Utils.normalize_url(a_url)
         pages = db.get_pages(url=normalized_url)
-
         if len(pages) == 0:
             crawl(a_url, site_id)
 
 
 
 
-crawl("https://bitcoin.org", None)
+crawl("https://searx.be/search?q=" + str(random.randint(0, 9999)), None, True)
