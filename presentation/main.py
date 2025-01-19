@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 FIXED_EDGES_SIZE = True
 SHOW_EDGES = True
 
-
 db = Database("data.db")
 
 sites = db.get_sites()
