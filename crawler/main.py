@@ -13,6 +13,7 @@ import time
 import threading
 
 MAX_THEADS = 5
+ENTRY_SITE = "https://news.ycombinator.com/"
 
 def crawl(url: str, from_site_id: int|None, resume: bool = False):
     db = Database("data.db")
@@ -87,4 +88,4 @@ def crawl(url: str, from_site_id: int|None, resume: bool = False):
 
 
 if __name__ == "__main__":
-    crawl("https://news.ycombinator.com/", None, os.path.isfile("data.db"))
+    crawl(ENTRY_SITE, None, os.path.isfile("data.db"))
