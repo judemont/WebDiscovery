@@ -5,7 +5,7 @@ import igraph as ig
 from database import Database
 import matplotlib.pyplot as plt
 
-FIXED_EDGES_SIZE = False
+FIXED_EDGES_SIZE = True
 SHOW_EDGES = True
 
 
@@ -48,7 +48,7 @@ fig, ax = plt.subplots()
 ig.plot(
     g, 
     target=ax,
-    layout="rt_circular",
+    layout="dh",
     edge_width=0.4,
     vertex_size=g.vs["size"],
     vertex_label=g.vs['label'],

@@ -12,7 +12,7 @@ import random
 import time
 import threading
 
-MAX_THEADS = 7
+MAX_THEADS = 5
 
 def crawl(url: str, from_site_id: int|None, resume: bool = False):
     db = Database("data.db")
@@ -53,8 +53,10 @@ def crawl(url: str, from_site_id: int|None, resume: bool = False):
 
     site_id = sites[0][0]
 
-    
-    db.new_page(site_id, normalized_url)
+    pages_ = db.get_pages(url=normalized_url)
+
+    if len(pages_) == 0:
+        db.new_page(site_id, normalized_url)
 
     if from_site_id != None and site_id != from_site_id:    
         link = db.get_links(from_site_id=from_site_id, to_link_id=site_id)
@@ -78,7 +80,7 @@ def crawl(url: str, from_site_id: int|None, resume: bool = False):
 
         if len(pages) == 0:
             if threading.active_count() < MAX_THEADS:
-                time.sleep(random.randint(1, 3))
+                time.sleep(random.randint(1, 6))
                 threading.Thread(target=crawl, args=(a_url, site_id)).start()
             else:
                 crawl(a_url, site_id)
