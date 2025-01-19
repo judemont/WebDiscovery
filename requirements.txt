@@ -1,0 +1,6 @@
+beautifulsoup4==4.12.3
+matplotlib==3.10.0
+Pillow==11.1.0
+python_igraph==0.11.8
+thread==2.0.5
+urllib3_secure_extra==0.1.0
