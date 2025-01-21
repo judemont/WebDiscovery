@@ -5,7 +5,7 @@ import igraph as ig
 from database import Database
 import matplotlib.pyplot as plt
 
-FIXED_EDGES_SIZE = True
+FIXED_EDGES_SIZE = False
 SHOW_EDGES = True
 
 db = Database("data.db")

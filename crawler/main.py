@@ -13,7 +13,7 @@ import time
 import threading
 
 MAX_THEADS = 5
-ENTRY_SITE = "https://news.ycombinator.com/"
+ENTRY_SITE = "https://futureofthe.tech"
 
 def crawl(url: str, from_site_id: int|None, resume: bool = False):
     db = Database("data.db")
@@ -36,12 +36,6 @@ def crawl(url: str, from_site_id: int|None, resume: bool = False):
     sites = db.get_sites(domain=domain)
     if len(pages) > 0 and not resume:
         return
-    
-    
-    if random.randint(0, 43) == 42:
-        pages = db.get_pages()
-        sites = db.get_sites()
-        print(f"Pages: {len(pages)}, Sites: {len(sites)}")
 
     
     if len(sites) == 0:
