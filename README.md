@@ -20,7 +20,8 @@ crawler.start()
 sitesMap = SitesMap()
 sitesMap.show()
 ```
-#### Example result :
+### Example result :
+![Screenshot From 2025-01-22 09-31-41](https://github.com/user-attachments/assets/b244ba06-37d1-4b40-9a2b-4ed7d5f11d35)
 
 ## Documentation :
 ### Crawler :
