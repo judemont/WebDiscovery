@@ -3,7 +3,7 @@ dist
 env
 venv
 __pycache__
-*.egg-infos
+*.egg-info
 tests/
 *.db
 *.sqlite

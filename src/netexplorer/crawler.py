@@ -7,6 +7,24 @@ import socket
 import threading
 
 class Crawler():
+    """
+    A web crawler class to recursively explore and store web pages.
+
+    Initializes the Crawler with the given parameters.
+    Parameters:
+        entryUrl (str): The initial URL to start crawling from.
+        maxSites (int|None): The maximum number of sites to crawl. If None, there is no limit.
+        maxDepth (int|None): The maximum depth to crawl. If None, there is no limit.
+        threads (int): The maximum number of threads to use for crawling.
+        headers (dict): Headers to use for HTTP requests.
+        dbPath (str): Path to the SQLite database file.
+        resume (bool): Whether to resume from the existing database or start fresh.
+
+    Methods:
+        start():
+            Starts the crawling process.
+    """
+
     HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"}
     crawlI = 0
 
@@ -20,6 +38,9 @@ class Crawler():
         self.resume = resume
 
     def start(self):
+        """
+        Starts the crawling process. If resume is False, it removes the existing database file.
+        """
         if not self.resume:
             try:
                 os.remove(self.dbPath)
@@ -74,7 +95,6 @@ class Crawler():
             if len(link) == 0:
                 db.new_link(from_site_id, site_id)
 
-
         if self.maxSites is not None and self.crawlI >= self.maxSites:
                 return
         self.crawlI += 1
@@ -82,7 +102,6 @@ class Crawler():
     
         if self.maxDepth is not None and depth >= self.maxDepth:
             return
-        
 
         for a in soup.find_all("a"):
             a_url = a.get("href")
@@ -101,7 +120,5 @@ class Crawler():
                     threading.Thread(target=self.crawl, args=(a_url, site_id, depth+ (1 if newSite else 0))).start()
                 else:
                     self.crawl(a_url, site_id, depth+ (1 if newSite else 0))
-
-
 
 

@@ -10,7 +10,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 [project]
 name = "netexplorer"
-version = "2.0.2"
+version = "2.0.4"
 authors = [
   { name="Julien de Montmollin", email="jdm@futureofthe.tech" },
 ]

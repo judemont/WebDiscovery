@@ -3,6 +3,20 @@ from .utils import Database
 import matplotlib.pyplot as plt
 
 class SitesMap:
+    """
+    A class to visualize the map of sites and their links using a graph.
+
+    Attributes:
+        dbPath (str): Path to the SQLite database file.
+        fixedPointsSize (bool): Whether to use a fixed size for points (nodes) in the graph.
+        pointsSize (int): The size of the points (nodes) in the graph.
+        edgesWidth (float): The width of the edges (links) in the graph.
+        layout (str): The layout to use for the graph visualization.
+
+    Methods:
+        show():
+            Displays the graph of sites and their links.
+    """
     def __init__(self, dbPath: str="database.db", fixedPointsSize: bool=False, pointsSize: int=10, edgesWidth: float=0.4, layout: str="rt_circular"):
         self.dbPath = dbPath
         self.fixedPointsSize = fixedPointsSize
