@@ -1,0 +1,28 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "beautifulsoup4==4.12.3",
+    "matplotlib==3.10.0",
+    "igraph==0.11.8",
+    "urllib3==2.3.0",
+    "requests==2.32.3"
+]
+build-backend = "setuptools.build_meta"
+[project]
+name = "netexplorer"
+version = "2.0.2"
+authors = [
+  { name="Julien de Montmollin", email="jdm@futureofthe.tech" },
+]
+description = "Web analysis tool"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/judemont/netexplorer"
+Issues = "https://github.com/judemont/netexplorer/issues"

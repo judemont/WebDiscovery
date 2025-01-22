@@ -1,2 +1,9 @@
-/__pycache__
-/data.db
+build
+dist
+env
+venv
+__pycache__
+*.egg-infos
+tests/
+*.db
+*.sqlite

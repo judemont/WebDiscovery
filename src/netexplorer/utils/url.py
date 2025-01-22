@@ -1,6 +1,6 @@
 from urllib.parse import urlparse, urlunparse
 
-class Utils:
+class Url:
     def normalize_url(url: str) -> str|None:
         if url is None:
             return None
